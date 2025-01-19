@@ -6,7 +6,11 @@ import 'package:flutter_application_2/app/services/api_services.dart';
 class JokesListScreen extends StatelessWidget {
   final String type;
 
+<<<<<<< HEAD
   JokesListScreen({required this.type});
+=======
+  JokesListScreen({required this.type, required void Function(Map<String, dynamic> joke) toggleFavorite});
+>>>>>>> 30c7d4b (Added favorites feature and Firebase integration)
 
   @override
   Widget build(BuildContext context) {

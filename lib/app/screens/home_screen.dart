@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 
 import '../services/api_services.dart';
 import 'joke_list_screen.dart';
+=======
+import '../services/api_services.dart';
+import 'favorites_screen.dart';
+import '../models/joke_model.dart'; // Import the joke model
+>>>>>>> 30c7d4b (Added favorites feature and Firebase integration)
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,6 +19,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ApiServices apiService = ApiServices();
   late Future<List<String>> jokeTypes;
+<<<<<<< HEAD
+=======
+  List<Joke> jokesList = [];
+  List<Joke> favoriteJokes = [];
+>>>>>>> 30c7d4b (Added favorites feature and Firebase integration)
 
   @override
   void initState() {
@@ -20,6 +31,31 @@ class _HomeScreenState extends State<HomeScreen> {
     jokeTypes = ApiServices.fetchJokeTypes();
   }
 
+<<<<<<< HEAD
+=======
+  // Function to fetch jokes by type
+  void _fetchJokesByType(String type) async {
+    try {
+      final jokes = await ApiServices.fetchJokesByType(type);
+      setState(() {
+        jokesList = jokes;
+      });
+    } catch (e) {
+      // Handle error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to load jokes: $e')),
+      );
+    }
+  }
+
+  // Function to add jokes to favorites
+  void _addToFavorites(Joke joke) {
+    setState(() {
+      favoriteJokes.add(joke);
+    });
+  }
+
+>>>>>>> 30c7d4b (Added favorites feature and Firebase integration)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +63,20 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Joke Types'),
         actions: [
           IconButton(
+<<<<<<< HEAD
             icon: const Icon(Icons.lightbulb),
             onPressed: () {
               Navigator.pushNamed(context, '/randomJoke');
+=======
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FavoritesScreen(favoriteJokes: favoriteJokes),
+                ),
+              );
+>>>>>>> 30c7d4b (Added favorites feature and Firebase integration)
             },
           ),
         ],
@@ -52,12 +99,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListTile(
                     title: Text(type),
                     onTap: () {
+<<<<<<< HEAD
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => JokesListScreen(type: type),
                         ),
                       );
+=======
+                      _fetchJokesByType(type);
+>>>>>>> 30c7d4b (Added favorites feature and Firebase integration)
                     },
                   ),
                 );

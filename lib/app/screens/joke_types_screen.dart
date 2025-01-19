@@ -27,7 +27,11 @@ class JokeTypesScreen extends StatelessWidget {
                   onTap: (type) {
                     Navigator.push(
                       context,
+<<<<<<< HEAD
                       MaterialPageRoute(builder: (context) => JokesListScreen(type: type)),
+=======
+                      MaterialPageRoute(builder: (context) => JokesListScreen(type: type, toggleFavorite: (Map<String, dynamic> joke) {  },)),
+>>>>>>> 30c7d4b (Added favorites feature and Firebase integration)
                     );
                   },
                 );
